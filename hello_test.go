@@ -14,22 +14,31 @@ func TestHello(t *testing.T) {
     
       want := fmt.Sprintf("Hello, %s!", name)
       got := Hello(name)
-      if got != want {
-        t.Errorf("got %q want %q", got, want)
-      }
+      assertCorrectMessage(got, want, t)
     }
   })
  
   t.Run("say hello world when empty string is supplied", func(t *testing.T){
     got := Hello("")
     want := "Hello, world!"
-
-    if got != want {
-      t.Errorf("got %q want %q", got, want)
-    }
-  })
-
-
+    
+    assertCorrectMessage(got, want, t)
+ })
 
 }
 
+
+// Helper functions
+func assertCorrectMessage(got string, want string, t testing.TB) {
+  t.Helper()
+  if got != want {
+      t.Errorf("got %q want %q", got, want)
+    }
+}
+
+
+func BenchmarkHello(b *testing.B) {
+  for i := 0; i< b.N; i++ {
+    Hello("Lucas")
+  }
+}
