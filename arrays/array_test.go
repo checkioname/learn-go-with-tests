@@ -1,6 +1,9 @@
 package arrays
 
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
 
 func TestSumItems(t *testing.T) {
   
@@ -25,5 +28,19 @@ func TestSumItems(t *testing.T) {
       t.Errorf("Expected %d but got %d, given %v", want, got, numbers)
     }
 
+  })
+}
+
+
+func TestSumAll(t *testing.T) {
+  t.Run("Sum two slices into 1", func(t *testing.T) {
+    sliceOne := []int { 1, 1 }
+    sliceTwo := []int { 2, 2 }
+
+    got := SumAll(sliceOne, sliceTwo)
+    want := []int {2,4}
+    if !reflect.DeepEqual(got,want) {
+      t.Errorf("Expected %v but got %v", want, got)
+    }
   })
 }
