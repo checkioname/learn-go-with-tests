@@ -2,9 +2,12 @@ package wallet
 
 import "fmt"
 
+type Stringer interface {
+  String() string
+}
+
 
 type Bitcoin float64
-
 
 // Implementando a interface Stringer (define como a struct sera printada)
 // podemos usar %s nos t.Errorf agr passando a struct inteira
