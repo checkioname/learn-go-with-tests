@@ -22,3 +22,7 @@ func (d Dictionary) Add(word, definition string) {
 
 
 // write update method
+
+
+// Write delete method
+//Go has a built-in function delete that works on maps. It takes two arguments. The first is the map and the second is the key to be removed.
