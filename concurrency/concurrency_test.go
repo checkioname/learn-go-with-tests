@@ -29,6 +29,4 @@ func TestCheckWebsites(t *testing.T) {
 	}
 }
 
-func slowStubWebsiteChekcer(_ string) {
-  
-}
+
