@@ -6,6 +6,7 @@ import (
 	"time"
 )
 
+var delay = time.Second * 10
 
 func WebsiteRacer(a, b string) string {
   aDuration := measureResponseTime(a)
@@ -26,16 +27,19 @@ func measureResponseTime(url string) time.Duration{
 
 // website racer using select 
 func Racer(a, b string) (winner string, error error){
+  return ConfigurableRacer(a,b, delay)
+}
+
+func ConfigurableRacer(a,b string, delay time.Duration) (winner string, error error){
   select{
   case <- ping(a):
     return a, nil
   case <- ping(b):
     return b, nil
-  case <- time.After(time.Second *10):
+  case <- time.After(delay):
     return "", fmt.Errorf("timed out")
   }
 }
-
 func ping(url string) chan struct{} {
   ch := make(chan struct{})
   go func() {
